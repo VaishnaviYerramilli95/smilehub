@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SmileHub-Appointment</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .box a {
+      padding: 15px;
+      color: black;
+      display: inline;
+      text-align: center;
+    }
+
+    .form-box {
+      background-color: white;
+      padding: 20px;
+      margin: 20px auto;
+      width: 50%;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    input, select {
+      padding: 8px;
+      margin: 10px 0;
+      width: 90%;
+      border-radius: 5px;
+    }
+
+    input[type="submit"] {
+      background-color: #004d66;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #007a99;
+    }
+  </style>
+</head>
+<body bgcolor="lightgrey">
+  <center>
+    <h1 style="background-color:#004d66;color:white;">SMILEHUB DENTAL CARE 🦷😁</h1>
+    <p><b>Your Smile, Our Priority!!</b></p>
+
+    <div class="box">
+      <a href="smilehub.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="appointment.html">Appointment</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </center>
+
+  <div class="form-box">
+    <h2>Book an Appointment 📝</h2>
+    <form>
+      <label>Full Name:</label><br>
+      <input type="text" required><br>
+
+      <label>Email Address:</label><br>
+      <input type="email" required><br>
+
+      <label>Phone Number:</label><br>
+      <input type="tel" required><br>
+
+      <label>Preferred Date:</label><br>
+      <input type="date" required><br>
+
+      <label>Select Service:</label><br>
+      <select required>
+        <option>Teeth Cleaning</option>
+        <option>Tooth Filling</option>
+        <option>Braces & Aligners</option>
+        <option>Root Canal</option>
+        <option>Teeth Whitening</option>
+      </select><br>
+
+      <input type="submit" value="Book Now">
+    </form>
+  </div>
+
+  <marquee style="background-color: #004d66; color: white; padding: 10px; font-weight: bold;" behavior="scroll" direction="left">
+    SmileHub Dental Care. All rights reserved. Contact: smilehub@gmail.com | +91 9490106987
+  </marquee>
+
+</body>
+</html>
