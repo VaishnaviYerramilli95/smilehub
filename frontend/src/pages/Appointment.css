@@ -1,0 +1,50 @@
+/* Appointment.css */
+.appointment-page { 
+    padding:40px 0; 
+    background:#fff; 
+}
+.appointment-page h2 { 
+    color:#076fbf; 
+    text-align:center; 
+}
+.appointment-page .muted { 
+    text-align:center; 
+    color:#586e7f; 
+    margin-bottom:18px; 
+}
+
+.appt-form { 
+    max-width:820px; 
+    margin:18px auto; 
+    background:#f6fbff; 
+    padding:22px; border-radius:12px; 
+    box-shadow: 0 10px 30px rgba(7,111,191,0.04); 
+}
+.row { 
+    display:flex; 
+    gap:12px; 
+    margin-bottom:12px; 
+}
+.row input { 
+    flex:1; 
+    padding:12px; 
+    border-radius:8px; 
+    border:1px solid #d9eaf9; 
+}
+.appt-form input, .appt-form select { 
+    width:100%; 
+    padding:12px; 
+    border-radius:8px; 
+    border:1px solid #d9eaf9; 
+}
+.appt-form select { 
+    margin-top:6px; 
+}
+
+.form-msg { 
+    margin-top:12px; 
+    color:#0b5fa8; 
+    font-weight:600; 
+    text-align:center; 
+}
+@media (max-width:720px){ .row{flex-direction:column} .hero-right img{width:100%} }

@@ -1,0 +1,27 @@
+/* Contact.css */
+.contact-page { 
+    padding:40px 0; 
+    background:#f6fbff;
+}
+.contact-page h2 { 
+    color:#076fbf;
+    text-align:center; 
+    margin-bottom:14px; 
+}
+.contact-grid { 
+    display:flex; 
+    gap:20px; 
+    justify-content:center; 
+    flex-wrap:wrap; 
+}
+.contact-card { 
+    background:white; 
+    padding:20px; 
+    border-radius:12px; 
+    width:320px; 
+    box-shadow: 0 10px 30px rgba(7,111,191,0.04); 
+}
+.contact-card h3 { 
+    color:#0b5fa8; 
+    margin-bottom:8px; 
+}
