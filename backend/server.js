@@ -1,41 +1,49 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-require('dotenv').config();
-const Appointment = require('./appointmentModel');
 
 const app = express();
-
+app.use(cors());
 app.use(express.json());
-app.use(cors({
-  origin: ["https://smilehub-eight.vercel.app"],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
 
-// Connect MongoDB (Compass)
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('✅ MongoDB (Compass) connected successfully'))
-  .catch(err => console.error('❌ Connection error:', err));
+
+const MONGO_URI = 'mongodb://127.0.0.1:27017/smilehub';
+
+mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('✅ MongoDB connected successfully'))
+  .catch(err => console.error('❌ Mongo connection error:', err));
+
+// Define Schema
+const appointmentSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  phone: String,
+  date: String,
+  service: String,
+  createdAt: { type: Date, default: Date.now }
+});
+
+// Create Model
+const Appointment = mongoose.model('Appointment', appointmentSchema);
 
 // Routes
 app.get('/', (req, res) => {
-  res.send('SmileHub Backend Running!');
+  res.send('SmileHub Backend Running...');
 });
 
-// Add Appointment
-app.post('/api/appointments', async (req, res) => {
+// Add appointment
+app.post('/appointments', async (req, res) => {
   try {
     const newAppointment = new Appointment(req.body);
     await newAppointment.save();
-    res.status(201).json({ message: 'Appointment saved successfully' });
+    res.status(201).json({ message: 'Appointment saved successfully!' });
   } catch (error) {
     res.status(500).json({ message: 'Error saving appointment' });
   }
 });
 
-// Get all Appointments
-app.get('/api/appointments', async (req, res) => {
+// Get all appointments
+app.get('/appointments', async (req, res) => {
   try {
     const allAppointments = await Appointment.find().sort({ createdAt: -1 });
     res.json(allAppointments);
@@ -44,5 +52,5 @@ app.get('/api/appointments', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 app.listen(PORT, () => console.log(`🚀 Server running at http://localhost:${PORT}`));
