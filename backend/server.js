@@ -8,7 +8,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-  origin: ["https://smilehub-eight.vercel.app/"],
+  origin: ["https://smilehub-eight.vercel.app"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 });
 
 // Add Appointment
-app.post('/appointments', async (req, res) => {
+app.post('/api/appointments', async (req, res) => {
   try {
     const newAppointment = new Appointment(req.body);
     await newAppointment.save();
@@ -35,7 +35,7 @@ app.post('/appointments', async (req, res) => {
 });
 
 // Get all Appointments
-app.get('/appointments', async (req, res) => {
+app.get('/api/appointments', async (req, res) => {
   try {
     const allAppointments = await Appointment.find().sort({ createdAt: -1 });
     res.json(allAppointments);
