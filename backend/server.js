@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -6,14 +7,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
-const MONGO_URI = 'mongodb://127.0.0.1:27017/smilehub';
-
-mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+// MongoDB connection
+const MONGO_URI = process.env.MONGO_URI;
+mongoose.connect(MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
   .then(() => console.log('✅ MongoDB connected successfully'))
   .catch(err => console.error('❌ Mongo connection error:', err));
 
-// Define Schema
+// Appointment Schema and Model
 const appointmentSchema = new mongoose.Schema({
   name: String,
   email: String,
@@ -23,7 +26,6 @@ const appointmentSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-// Create Model
 const Appointment = mongoose.model('Appointment', appointmentSchema);
 
 // Routes
@@ -31,7 +33,6 @@ app.get('/', (req, res) => {
   res.send('SmileHub Backend Running...');
 });
 
-// Add appointment
 app.post('/appointments', async (req, res) => {
   try {
     const newAppointment = new Appointment(req.body);
@@ -42,7 +43,6 @@ app.post('/appointments', async (req, res) => {
   }
 });
 
-// Get all appointments
 app.get('/appointments', async (req, res) => {
   try {
     const allAppointments = await Appointment.find().sort({ createdAt: -1 });
@@ -52,5 +52,6 @@ app.get('/appointments', async (req, res) => {
   }
 });
 
-const PORT = 5000;
-app.listen(PORT, () => console.log(`🚀 Server running at http://localhost:${PORT}`));
+// Server listen
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
