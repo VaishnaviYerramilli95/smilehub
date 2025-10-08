@@ -19,7 +19,7 @@ export default function Appointment(){
     e.preventDefault();
     if(!form.service){ setMsg("Please select a service."); return; }
     try {
-      await axios.post("http://localhost:5000/appointments", form);
+        await axios.post("https://smilehubdentalcare.onrender.com/appointments", form);
       setMsg("🎉 Appointment booked — we will contact you soon.");
       setForm({ name:"", email:"", phone:"", date:"", service:"" });
     } catch(err) {
